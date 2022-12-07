@@ -3,8 +3,7 @@ Imports System
 Imports System.Data
 Imports System.Data.OleDb
 Imports System.Collections.Generic
-Imports DevExpress.Web.ASPxGridView
-Imports DevExpress.Web.ASPxEditors
+Imports DevExpress.Web
 
 Partial Public Class _Default
 	Inherits System.Web.UI.Page
@@ -34,7 +33,7 @@ Partial Public Class _Default
 			End If
 		End If
 	End Sub
-	Protected Sub ASPxGridView1_CustomUnboundColumnData(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridView.ASPxGridViewColumnDataEventArgs)
+	Protected Sub ASPxGridView1_CustomUnboundColumnData(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewColumnDataEventArgs)
 		If e.Column.FieldName = "LowerBound" Then
 			Dim lowerBoundStorage As Dictionary(Of Object, Integer) = TryCast(Session("lowerBoundStorage"), Dictionary(Of Object, Integer))
 			If lowerBoundStorage Is Nothing Then
@@ -110,7 +109,7 @@ Partial Public Class _Default
 		g2.DataSource = Session("dataSourceSelectedValues")
 		g2.DataBind()
 	End Sub
-	Protected Sub ASPxCallback1_Callback(ByVal source As Object, ByVal e As DevExpress.Web.ASPxCallback.CallbackEventArgs)
+	Protected Sub ASPxCallback1_Callback(ByVal source As Object, ByVal e As DevExpress.Web.CallbackEventArgs)
 		Dim parameters() As String = e.Parameter.Split("|"c)
 		Dim visibleIndex As Integer = Integer.Parse(parameters(0))
 		Dim lowerBound As Integer = Integer.Parse(parameters(1))
